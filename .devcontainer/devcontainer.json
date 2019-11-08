@@ -1,0 +1,14 @@
+{
+  "name": "Hugo (Ubuntu)",
+  "dockerFile": "Dockerfile",
+  "runArgs": [
+    "-u",
+    "dev",
+    "-p",
+    "1313:1313"
+  ],
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "extensions": []
+}
