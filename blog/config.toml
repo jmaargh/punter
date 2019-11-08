@@ -1,0 +1,4 @@
+baseURL = "https://yonni12.github.io/punter"
+languageCode = "en-gb"
+title = "Punter"
+publishDir = "../docs"
