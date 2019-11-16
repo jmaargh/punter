@@ -3,11 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://jmaargh.github.io/punter/categories/</loc>
+    <loc>https://jmaargh.github.io/punter/about/</loc>
+    <lastmod>2019-11-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://jmaargh.github.io/punter/</loc>
+    <lastmod>2019-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jmaargh.github.io/punter/categories/</loc>
   </url>
   
   <url>
