@@ -1,6 +1,7 @@
 baseURL = "https://jmaargh.github.io/punter/"
 languageCode = "en-gb"
 title = "Punter"
+publishDir = "../docs"
 theme = "terminal"
 paginate = 5
 
