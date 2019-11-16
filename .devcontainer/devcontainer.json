@@ -5,7 +5,9 @@
     "-u",
     "dev",
     "-p",
-    "1313:1313"
+    "1313:1313",
+    "-v",
+    "${env:HOME}/.ssh/:/home/dev/.ssh:ro"
   ],
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash"
