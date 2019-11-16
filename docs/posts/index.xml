@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Punter</title>
-    <link>https://jmaargh.github.io/punter/</link>
-    <description>Recent content on Punter</description>
+    <title>Posts on Punter</title>
+    <link>https://jmaargh.github.io/punter/posts/</link>
+    <description>Recent content in Posts on Punter</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <lastBuildDate>Sat, 16 Nov 2019 22:43:20 +0000</lastBuildDate>
     
-	<atom:link href="https://jmaargh.github.io/punter/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://jmaargh.github.io/punter/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,17 +19,6 @@
       <guid>https://jmaargh.github.io/punter/posts/getting-a-skeleton-up-and-running/</guid>
       <description>I was going to make my firt post &amp;ldquo;what is a path tracer anyway?&amp;rdquo;, but part of the point of this project is to learn exactly that by doing. So instead, let&amp;rsquo;s start somewhere a bit more practical.
 Getting a skeleton up and running To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://jmaargh.github.io/punter/about/</link>
-      <pubDate>Sat, 16 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://jmaargh.github.io/punter/about/</guid>
-      <description>Hello, punter This blog is to document my progress having fun experimenting with writing path tracing systems with Rust. Initially inspired by smallpt, my main goals are to:
- have fun, learn to write good Rust, learn more about graphics programming in general and path tracing in particular.  If you&amp;rsquo;ve stumbled across this I hope you can find it interesting and that I haven&amp;rsquo;t abandoned the project.
-The name Nothing special, just a silly tripartite portmanteu of &amp;ldquo;Path Tracing&amp;rdquo;, &amp;ldquo;Rust&amp;rdquo;, and &amp;ldquo;fUN&amp;rdquo;.</description>
     </item>
     
   </channel>

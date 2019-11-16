@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Getting a skeleton up and running :: Punter</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="I was going to make my firt post &amp;ldquo;what is a path tracer anyway?&amp;rdquo;, but part of the point of this project is to learn exactly that by doing. So instead, let&amp;rsquo;s start somewhere a bit more practical.
+Getting a skeleton up and running To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system."/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://jmaargh.github.io/punter/posts/getting-a-skeleton-up-and-running/" />
+
+
+<link rel="stylesheet" href="https://jmaargh.github.io/punter/assets/style.css">
+
+  <link rel="stylesheet" href="https://jmaargh.github.io/punter/assets/purple.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://jmaargh.github.io/punter/img/apple-touch-icon-144-precomposed.png">
+
+<link rel="shortcut icon" href="https://jmaargh.github.io/punter/favicon.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Getting a skeleton up and running :: Punter — " />
+<meta name="twitter:description" content="I was going to make my firt post &amp;ldquo;what is a path tracer anyway?&amp;rdquo;, but part of the point of this project is to learn exactly that by doing. So instead, let&amp;rsquo;s start somewhere a bit more practical.
+Getting a skeleton up and running To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system." />
+<meta name="twitter:site" content="https://jmaargh.github.io/punter/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image" content="">
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Getting a skeleton up and running :: Punter — ">
+<meta property="og:description" content="I was going to make my firt post &amp;ldquo;what is a path tracer anyway?&amp;rdquo;, but part of the point of this project is to learn exactly that by doing. So instead, let&amp;rsquo;s start somewhere a bit more practical.
+Getting a skeleton up and running To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system." />
+<meta property="og:url" content="https://jmaargh.github.io/punter/posts/getting-a-skeleton-up-and-running/" />
+<meta property="og:site_name" content="Getting a skeleton up and running" />
+<meta property="og:image" content="">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2019-11-16 22:43:20 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="">
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/punter">
+  <div class="logo">
+    Punter
+  </div>
+</a>
+
+    </div>
+    <div class="menu-trigger">menu</div>
+  </div>
+  
+    <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/punter/about">About</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/punter/about">About</a></li>
+      
+    
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="https://jmaargh.github.io/punter/posts/getting-a-skeleton-up-and-running/">Getting a skeleton up and running</a></h1>
+  <div class="post-meta">
+      
+    <span class="post-date">
+      2019-11-16
+    </span>
+    
+    
+  </div>
+
+  
+
+  
+
+  <div class="post-content">
+    
+
+<p>I was going to make my firt post &ldquo;what is a path tracer anyway?&rdquo;, but part of
+the point of this project is to learn exactly that by doing. So instead, let&rsquo;s
+start somewhere a bit more practical.</p>
+
+<h1 id="getting-a-skeleton-up-and-running">Getting a skeleton up and running</h1>
+
+<p>To develop this project, I&rsquo;m personally using
+<a href="https://code.visualstudio.com/">vscode</a>&rsquo;s in-docker development features. This
+essentially means spinning up a custom docker image for all development so that
+anything installed is nicely isolated from your host system. I&rsquo;m also developing
+in Rust, so we&rsquo;ll need a rust toolchain too.</p>
+
+<h2 id="docker-setup">Docker setup</h2>
+
+<p>The configuration files for the docker development environment are in
+<a href="https://github.com/jmaargh/punter/tree/master/.devcontainer">.devcontainer/</a>.
+To make use of these like I do simply</p>
+
+<ul>
+<li><a href="https://docs.docker.com/">install docker</a> for your system</li>
+<li><a href="https://code.visualstudio.com/docs/remote/containers">install vscode and its container tools extension</a></li>
+<li>and open a vscode instance in that container in the normal way.</li>
+</ul>
+
+<p>If you&rsquo;d rather not use vscode, then you can still build from the same
+<a href="https://github.com/jmaargh/punter/tree/master/.devcontainer/Dockerfile">Dockerfile</a>
+and do in-docker development however you&rsquo;d prefer.</p>
+
+<p>Note that the development image also has (for my convenience) tools for building
+this blog, you won&rsquo;t necessarily need those.</p>
+
+<h2 id="rust-setup">Rust setup</h2>
+
+<p>At this stage, I&rsquo;m planning on using an up-to-date Rust stable compiler for
+Ubuntu 18.04 64bit. Targeting Rust 2018. If you&rsquo;re not using the development
+docker container, the <a href="https://www.rust-lang.org/tools/install">Rust docs</a> can
+tell you how to set things up much better than I ever could. The tooling&rsquo;s
+great, trust it.</p>
+
+<p>If you&rsquo;d rather not use docker at all, I&rsquo;m afraid I&rsquo;m going to leave you on
+your own for setting up a development environment and toolchain, I&rsquo;m sure you
+can work it out from the <a href="https://www.rust-lang.org/tools/install">Rust docs</a>.
+Throughout, I&rsquo;m going to write any instructions assuming an Ubuntu 18.04 (or
+similar) environment. It shouldn&rsquo;t be too hard to follow along for mac, Windows,
+or another distribution, but, again, you&rsquo;re on your own.</p>
+
+  </div>
+  
+
+  
+
+</div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2019 Powered by <a href="http://gohugo.io">Hugo</a></span>
+        
+        <span>:: Theme based on <a href="https://github.com/panr/hugo-theme-terminal">terminal</a></span>
+      </div>
+    </div>
+</footer>
+
+<script src="https://jmaargh.github.io/punter/assets/main.js"></script>
+<script src="https://jmaargh.github.io/punter/assets/prism.js"></script>
+
+
+
+
+  
+</div>
+
+</body>
+</html>

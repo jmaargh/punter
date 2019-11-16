@@ -3,12 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://jmaargh.github.io/punter/about/</loc>
-    <lastmod>2019-11-16T00:00:00+00:00</lastmod>
+    <loc>https://jmaargh.github.io/punter/posts/getting-a-skeleton-up-and-running/</loc>
+    <lastmod>2019-11-16T22:43:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jmaargh.github.io/punter/posts/</loc>
+    <lastmod>2019-11-16T22:43:20+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://jmaargh.github.io/punter/</loc>
+    <lastmod>2019-11-16T22:43:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jmaargh.github.io/punter/about/</loc>
     <lastmod>2019-11-16T00:00:00+00:00</lastmod>
   </url>
   
