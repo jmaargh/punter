@@ -85,6 +85,19 @@ true
 # Switch to non-root user and install Rust
 USER $USERNAME
 
+# Custom bash prompt config
+COPY .git-prompt.sh /home/$USERNAME/.git-prompt.sh
+RUN echo '\n\
+# Git prompt\n\
+green="\[\033[1;32m\]"\n\
+blue="\[\033[1;36m\]"\n\
+grey="\[\033[1;37m\]"\n\
+reset="\[\033[0m\]"\n\
+source ~/.git-prompt.sh\n\
+export GIT_PS1_SHOWDIRTYSTATE=1\n\
+export PS1="$(tput bold)$grey\u@\h$(tput sgr0)$green\$(__git_ps1)$blue \w\n$ $reset"'\
+>> /home/$USERNAME/.bashrc
+
 # Clean up
 RUN set -eux; \
   sudo apt-get autoremove -y; \
