@@ -2,18 +2,17 @@
   "name": "Punter (Ubuntu)",
   "dockerFile": "Dockerfile",
   "runArgs": [
-    "-u",
-    "dev",
-    "-p",
-    "1313:1313",
     "-v",
     "${env:HOME}/.ssh/:/home/dev/.ssh:ro"
   ],
+  "appPort": 1313,
   "settings": {
-    "terminal.integrated.shell.linux": "/bin/bash",
-    "terminal.integrated.shellArgs.linux": [
-      "-l"
-    ]
+    "terminal.integrated.shell.linux": "/bin/bash"
   },
-  "extensions": []
+  "extensions": [
+    "rust-lang.rust",
+    "bungcip.better-toml",
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint"
+  ]
 }

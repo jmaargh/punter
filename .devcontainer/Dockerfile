@@ -52,15 +52,38 @@ RUN set -eux; \
   rm -rf hugo/; \
 true
 
-# Install Rust
-USER $USERNAME
+# Install Rust for root for the benefit of the vscode extension
+# Following https://github.com/rust-lang/docker-rust/blob/8d0f25416858e2c1f59511a15c2bd0445b402caa/1.39.0/buster/Dockerfile
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/usr/local/cargo \
+    PATH=/usr/local/cargo/bin:$PATH \
+    RUST_VERSION=1.39.0
 RUN set -eux; \
-  sudo apt-get install -y build-essential; \
-  curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | \
-    sh -s -- -y; \
-  . $HOME/.cargo/env; \
-  rustup update stable; \
+  apt-get install -y \
+    coreutils \
+    build-essential \
+    lldb \
+  ; \
+  url="https://static.rust-lang.org/rustup/archive/1.20.2/x86_64-unknown-linux-gnu/rustup-init"; \
+  wget "$url"; \
+  echo "e68f193542c68ce83c449809d2cad262cc2bbb99640eb47c58fc1dc58cc30add *rustup-init" | \
+    sha256sum -c -; \
+  chmod +x rustup-init; \
+  ./rustup-init -y --no-modify-path --profile minimal --default-toolchain $RUST_VERSION; \
+  rm rustup-init; \
+  chmod -R a+w $RUSTUP_HOME $CARGO_HOME; \
+  rustup update; \
+  rustup component add \
+    rls \
+    rust-analysis \
+    rust-src \
+    rustfmt \
+    clippy \
+  ; \
 true
+
+# Switch to non-root user and install Rust
+USER $USERNAME
 
 # Clean up
 RUN set -eux; \
