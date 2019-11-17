@@ -18,7 +18,7 @@
       
       <guid>https://jmaargh.github.io/punter/posts/getting-a-skeleton-up-and-running/</guid>
       <description>I was going to make my firt post &amp;ldquo;what is a path tracer anyway?&amp;rdquo;, but part of the point of this project is to learn exactly that by doing. So instead, let&amp;rsquo;s start somewhere a bit more practical.
-Getting a skeleton up and running Setup To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system.</description>
+Setup To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system.</description>
     </item>
     
     <item>

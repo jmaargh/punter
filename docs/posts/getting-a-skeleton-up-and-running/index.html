@@ -7,7 +7,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="description" content="I was going to make my firt post &amp;ldquo;what is a path tracer anyway?&amp;rdquo;, but part of the point of this project is to learn exactly that by doing. So instead, let&amp;rsquo;s start somewhere a bit more practical.
-Getting a skeleton up and running Setup To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system."/>
+Setup To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="https://jmaargh.github.io/punter/posts/getting-a-skeleton-up-and-running/" />
@@ -31,7 +31,7 @@ Getting a skeleton up and running Setup To develop this project, I&amp;rsquo;m p
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Getting a skeleton up and running :: Punter — " />
 <meta name="twitter:description" content="I was going to make my firt post &amp;ldquo;what is a path tracer anyway?&amp;rdquo;, but part of the point of this project is to learn exactly that by doing. So instead, let&amp;rsquo;s start somewhere a bit more practical.
-Getting a skeleton up and running Setup To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system." />
+Setup To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system." />
 <meta name="twitter:site" content="https://jmaargh.github.io/punter/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image" content="">
@@ -41,7 +41,7 @@ Getting a skeleton up and running Setup To develop this project, I&amp;rsquo;m p
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Getting a skeleton up and running :: Punter — ">
 <meta property="og:description" content="I was going to make my firt post &amp;ldquo;what is a path tracer anyway?&amp;rdquo;, but part of the point of this project is to learn exactly that by doing. So instead, let&amp;rsquo;s start somewhere a bit more practical.
-Getting a skeleton up and running Setup To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system." />
+Setup To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system." />
 <meta property="og:url" content="https://jmaargh.github.io/punter/posts/getting-a-skeleton-up-and-running/" />
 <meta property="og:site_name" content="Getting a skeleton up and running" />
 <meta property="og:image" content="">
@@ -132,8 +132,6 @@ Getting a skeleton up and running Setup To develop this project, I&amp;rsquo;m p
 the point of this project is to learn exactly that by doing. So instead, let&rsquo;s
 start somewhere a bit more practical.</p>
 
-<h1 id="getting-a-skeleton-up-and-running">Getting a skeleton up and running</h1>
-
 <h2 id="setup">Setup</h2>
 
 <p>To develop this project, I&rsquo;m personally using
@@ -161,28 +159,18 @@ and do in-docker development however you&rsquo;d prefer.</p>
 <p>There are a couple of things to note about setting up the Dockerfile:</p>
 
 <ul>
-<li><p><a href="https://rustup.rs/">rustup</a> is only configured to install Rust tools for the
-current user, so in the Dockerfile, we have to change user before running that
-installation. A bit of a pain, but
-<a href="https://blog.sedrik.se/posts/my-docker-setup-for-rust/">it seems like the done thing</a>.</p>
-
-<pre><code class="language-Dockerfile"># Install Rust
-USER $USERNAME
-RUN set -eux; \
-curl --proto &quot;=https&quot; --tlsv1.2 -sSf https://sh.rustup.rs | \
-sh -s -- -y; \
-. $HOME/.cargo/env; \
-rustup update stable; \
-true
-</code></pre></li>
-
-<li><p>In
+<li><a href="https://rustup.rs/">rustup</a> is only configured to install Rust tools for the
+current user, so in the Dockerfile we have to do something a bit more
+esoteric. I decided to follow the
+<a href="https://github.com/rust-lang/docker-rust/blob/8d0f25416858e2c1f59511a15c2bd0445b402caa/1.39.0/buster/Dockerfile">official Rust Dockerfile</a>
+in installing to <code>/usr/local</code>.</li>
+<li>In
 <a href="https://github.com/jmaargh/punter/tree/master/.devcontainer/devcontainer.json">devcontainer.json</a>
 there is some important config even if you&rsquo;re not using vscode. In particular:
 docker flags to run as the non-root user <code>dev</code> (<code>&quot;-u&quot;, &quot;dev&quot;</code>), to expose the
-Hugo development server on port 1313 (<code>&quot;appPort&quot;: 1313</code>), to mount your user&rsquo;s
-ssh config for pushing/pulling to git
-(<code>&quot;-v&quot;, &quot;${env:HOME}/.ssh/:/home/dev/.ssh:ro&quot;</code>).</p></li>
+Hugo development server on port 1313 (<code>&quot;appPort&quot;: 1313</code>), and to mount your
+user&rsquo;s ssh config for pushing/pulling to git
+(<code>&quot;-v&quot;, &quot;${env:HOME}/.ssh/:/home/dev/.ssh:ro&quot;</code>).</li>
 </ul>
 
 <p>Note that the development image also has (for my convenience) tools for building

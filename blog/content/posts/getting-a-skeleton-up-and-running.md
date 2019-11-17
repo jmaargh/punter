@@ -7,8 +7,6 @@ I was going to make my firt post "what is a path tracer anyway?", but part of
 the point of this project is to learn exactly that by doing. So instead, let's
 start somewhere a bit more practical.
 
-# Getting a skeleton up and running
-
 ## Setup
 
 To develop this project, I'm personally using
@@ -34,25 +32,16 @@ and do in-docker development however you'd prefer.
 There are a couple of things to note about setting up the Dockerfile:
 
 - [rustup](https://rustup.rs/) is only configured to install Rust tools for the
-  current user, so in the Dockerfile, we have to change user before running that
-  installation. A bit of a pain, but
-  [it seems like the done thing](https://blog.sedrik.se/posts/my-docker-setup-for-rust/).
-```Dockerfile
-# Install Rust
-USER $USERNAME
-RUN set -eux; \
-  curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | \
-    sh -s -- -y; \
-  . $HOME/.cargo/env; \
-  rustup update stable; \
-true
-```
+  current user, so in the Dockerfile we have to do something a bit more
+  esoteric. I decided to follow the
+  [official Rust Dockerfile](https://github.com/rust-lang/docker-rust/blob/8d0f25416858e2c1f59511a15c2bd0445b402caa/1.39.0/buster/Dockerfile)
+  in installing to `/usr/local`.
 - In
   [devcontainer.json](https://github.com/jmaargh/punter/tree/master/.devcontainer/devcontainer.json)
   there is some important config even if you're not using vscode. In particular:
   docker flags to run as the non-root user `dev` (`"-u", "dev"`), to expose the
-  Hugo development server on port 1313 (`"appPort": 1313`), to mount your user's
-  ssh config for pushing/pulling to git
+  Hugo development server on port 1313 (`"appPort": 1313`), and to mount your
+  user's ssh config for pushing/pulling to git
   (`"-v", "${env:HOME}/.ssh/:/home/dev/.ssh:ro"`).
 
 Note that the development image also has (for my convenience) tools for building
