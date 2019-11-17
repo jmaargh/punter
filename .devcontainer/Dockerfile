@@ -14,6 +14,7 @@ RUN set -eux; \
     dialog \
   ; \
   apt-get install -y \
+    curl \
     git \
     iproute2 \
     procps \
@@ -51,11 +52,20 @@ RUN set -eux; \
   rm -rf hugo/; \
 true
 
+# Install Rust
+USER $USERNAME
+RUN set -eux; \
+  curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | \
+    sh -s -- -y; \
+  . $HOME/.cargo/env; \
+  rustup update stable; \
+true
+
 # Clean up
 RUN set -eux; \
-  apt-get autoremove -y; \
-  apt-get clean -y; \
-  rm -rf /var/lib/apt/lists/*; \
+  sudo apt-get autoremove -y; \
+  sudo apt-get clean -y; \
+  sudo rm -rf /var/lib/apt/lists/*; \
 true
 
 ENV DEBIAN_FRONTEND=

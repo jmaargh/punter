@@ -1,5 +1,5 @@
 {
-  "name": "Hugo (Ubuntu)",
+  "name": "Punter (Ubuntu)",
   "dockerFile": "Dockerfile",
   "runArgs": [
     "-u",
@@ -10,7 +10,10 @@
     "${env:HOME}/.ssh/:/home/dev/.ssh:ro"
   ],
   "settings": {
-    "terminal.integrated.shell.linux": "/bin/bash"
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "terminal.integrated.shellArgs.linux": [
+      "-l"
+    ]
   },
   "extensions": []
 }
