@@ -7,7 +7,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="description" content="I was going to make my firt post &amp;ldquo;what is a path tracer anyway?&amp;rdquo;, but part of the point of this project is to learn exactly that by doing. So instead, let&amp;rsquo;s start somewhere a bit more practical.
-Getting a skeleton up and running To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system."/>
+Getting a skeleton up and running Setup To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="https://jmaargh.github.io/punter/posts/getting-a-skeleton-up-and-running/" />
@@ -31,7 +31,7 @@ Getting a skeleton up and running To develop this project, I&amp;rsquo;m persona
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Getting a skeleton up and running :: Punter — " />
 <meta name="twitter:description" content="I was going to make my firt post &amp;ldquo;what is a path tracer anyway?&amp;rdquo;, but part of the point of this project is to learn exactly that by doing. So instead, let&amp;rsquo;s start somewhere a bit more practical.
-Getting a skeleton up and running To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system." />
+Getting a skeleton up and running Setup To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system." />
 <meta name="twitter:site" content="https://jmaargh.github.io/punter/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image" content="">
@@ -41,7 +41,7 @@ Getting a skeleton up and running To develop this project, I&amp;rsquo;m persona
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Getting a skeleton up and running :: Punter — ">
 <meta property="og:description" content="I was going to make my firt post &amp;ldquo;what is a path tracer anyway?&amp;rdquo;, but part of the point of this project is to learn exactly that by doing. So instead, let&amp;rsquo;s start somewhere a bit more practical.
-Getting a skeleton up and running To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system." />
+Getting a skeleton up and running Setup To develop this project, I&amp;rsquo;m personally using vscode&amp;rsquo;s in-docker development features. This essentially means spinning up a custom docker image for all development so that anything installed is nicely isolated from your host system." />
 <meta property="og:url" content="https://jmaargh.github.io/punter/posts/getting-a-skeleton-up-and-running/" />
 <meta property="og:site_name" content="Getting a skeleton up and running" />
 <meta property="og:image" content="">
@@ -134,13 +134,15 @@ start somewhere a bit more practical.</p>
 
 <h1 id="getting-a-skeleton-up-and-running">Getting a skeleton up and running</h1>
 
+<h2 id="setup">Setup</h2>
+
 <p>To develop this project, I&rsquo;m personally using
 <a href="https://code.visualstudio.com/">vscode</a>&rsquo;s in-docker development features. This
 essentially means spinning up a custom docker image for all development so that
 anything installed is nicely isolated from your host system. I&rsquo;m also developing
 in Rust, so we&rsquo;ll need a rust toolchain too.</p>
 
-<h2 id="docker-setup">Docker setup</h2>
+<h3 id="docker-setup">Docker setup</h3>
 
 <p>The configuration files for the docker development environment are in
 <a href="https://github.com/jmaargh/punter/tree/master/.devcontainer">.devcontainer/</a>.
@@ -156,10 +158,37 @@ To make use of these like I do simply</p>
 <a href="https://github.com/jmaargh/punter/tree/master/.devcontainer/Dockerfile">Dockerfile</a>
 and do in-docker development however you&rsquo;d prefer.</p>
 
+<p>There are a couple of things to note about setting up the Dockerfile:</p>
+
+<ul>
+<li><p><a href="https://rustup.rs/">rustup</a> is only configured to install Rust tools for the
+current user, so in the Dockerfile, we have to change user before running that
+installation. A bit of a pain, but
+<a href="https://blog.sedrik.se/posts/my-docker-setup-for-rust/">it seems like the done thing</a>.</p>
+
+<pre><code class="language-Dockerfile"># Install Rust
+USER $USERNAME
+RUN set -eux; \
+curl --proto &quot;=https&quot; --tlsv1.2 -sSf https://sh.rustup.rs | \
+sh -s -- -y; \
+. $HOME/.cargo/env; \
+rustup update stable; \
+true
+</code></pre></li>
+
+<li><p>In
+<a href="https://github.com/jmaargh/punter/tree/master/.devcontainer/devcontainer.json">devcontainer.json</a>
+there is some important config even if you&rsquo;re not using vscode. In particular:
+docker flags to run as the non-root user <code>dev</code> (<code>&quot;-u&quot;, &quot;dev&quot;</code>), to expose the
+Hugo development server on port 1313 (<code>&quot;appPort&quot;: 1313</code>), to mount your user&rsquo;s
+ssh config for pushing/pulling to git
+(<code>&quot;-v&quot;, &quot;${env:HOME}/.ssh/:/home/dev/.ssh:ro&quot;</code>).</p></li>
+</ul>
+
 <p>Note that the development image also has (for my convenience) tools for building
 this blog, you won&rsquo;t necessarily need those.</p>
 
-<h2 id="rust-setup">Rust setup</h2>
+<h3 id="rust-setup">Rust setup</h3>
 
 <p>At this stage, I&rsquo;m planning on using an up-to-date Rust stable compiler for
 Ubuntu 18.04 64bit. Targeting Rust 2018. If you&rsquo;re not using the development
@@ -173,6 +202,82 @@ can work it out from the <a href="https://www.rust-lang.org/tools/install">Rust 
 Throughout, I&rsquo;m going to write any instructions assuming an Ubuntu 18.04 (or
 similar) environment. It shouldn&rsquo;t be too hard to follow along for mac, Windows,
 or another distribution, but, again, you&rsquo;re on your own.</p>
+
+<h2 id="a-skeleton-application">A skeleton application</h2>
+
+<p>I&rsquo;m starting with a simple binary crate in the
+<a href="https://github.com/jmaargh/punter/tree/master/punter/"><code>punter/</code></a>
+subdirectory. This was set up with a simple</p>
+
+<pre><code class="language-bash">$ cargo new --bin punter
+</code></pre>
+
+<p>Plus, because the crate isn&rsquo;t at the root of the git repository, I&rsquo;ve put the
+following <code>Cargo.toml</code> at the root</p>
+
+<pre><code class="language-toml">[workspace]
+members = [&quot;punter&quot;]
+</code></pre>
+
+<p>this gives me flexibility to create as many sibling creates as I want as we move
+forward.</p>
+
+<p>The skeleton in the
+<a href="https://github.com/jmaargh/punter/tree/master/punter/src/main.rs"><code>punter/src/main.rs</code></a>
+module makes use of the <a href="https://crates.io/crates/image">image crate</a>. A path
+tracer works by running an algorithm for each pixel in the image being rendered,
+an algorithm that calculates the light incident on that pixel in the virtual
+scene. The skeleton I&rsquo;ve set up simply mocks out that process in the most
+basic way (where each pixel just returns black).</p>
+
+<pre><code class="language-rust">fn main() {
+  let mut img = make_image(1024, 768);
+  render_image(&amp;mut img);
+  save_png(&amp;img, std::path::Path::new(&quot;image.png&quot;));
+}
+</code></pre>
+
+<p>This neatly outlines what we&rsquo;re doing: creating an image buffer, rendering to
+it, and saving it out to disk.</p>
+
+<pre><code class="language-rust">type Pixel = image::Rgb&lt;u8&gt;;
+type Image = image::ImageBuffer&lt;Pixel, Vec&lt;u8&gt;&gt;;
+
+fn make_image(width: u32, height: u32) -&gt; Image {
+  image::ImageBuffer::from_raw(width, height, vec![0u8; (width * height * 3) as usize]).unwrap()
+}
+
+fn save_png(img: &amp;Image, path: &amp;std::path::Path) {
+  img.save_with_format(path, image::PNG).unwrap();
+}
+</code></pre>
+
+<p>A cursory glance at the image crate code seems to suggest that using an RGB
+buffer of bytes will be nice and efficient, so that&rsquo;s what I&rsquo;m going for. The
+typedefs may help refactoring later.</p>
+
+<pre><code class="language-rust">fn render_image(img: &amp;mut Image) {
+  for (column, row, pixel) in img.enumerate_pixels_mut() {
+    render_pixel(pixel, row, column);
+  }
+}
+
+fn render_pixel(pixel: &amp;mut Pixel, row: u32, column: u32) {
+  pixel.0 = [128u8; 3];
+}
+</code></pre>
+
+<p>This seems to be the idiomatic way to write pixel-by-pixel using the image
+crate. The <code>enumerate_pixels_mut()</code> method is nice, and the <code>image::Rgb&lt;u8&gt;</code>
+struct is just a
+<a href="https://doc.rust-lang.org/1.0.0/style/features/types/newtype.html">newtype pattern</a>
+over a <code>[u8; 3]</code> array.</p>
+
+<p>Running this with <code>$ cargo run</code>  will give a nice 1024×768 pixel 50% grey image
+called <code>image.png</code>.</p>
+
+<p>And that&rsquo;s it! All we need to do now is write the real <code>render_pixel</code> function
+and we&rsquo;re done! Easy!</p>
 
   </div>
   
