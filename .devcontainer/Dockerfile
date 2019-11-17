@@ -55,6 +55,7 @@ true
 # Install Rust
 USER $USERNAME
 RUN set -eux; \
+  sudo apt-get install -y build-essential; \
   curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | \
     sh -s -- -y; \
   . $HOME/.cargo/env; \
