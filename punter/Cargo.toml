@@ -1,0 +1,7 @@
+[package]
+name = "punter"
+version = "0.0.1"
+authors = ["John-Mark <jmaargh@gmail.com>"]
+edition = "2018"
+
+[dependencies]
