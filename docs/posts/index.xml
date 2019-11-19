@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Punter</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Sat, 16 Nov 2019 22:43:20 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 19 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jmaargh.github.io/punter/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Aside: Debugging</title>
+      <link>https://jmaargh.github.io/punter/posts/aside-debugging/</link>
+      <pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jmaargh.github.io/punter/posts/aside-debugging/</guid>
+      <description>Just a quick note on getting the vscode interactive debugger playing nicely with the in-docker development.
+You can probably work out for yourself that you need to install the LLDB debugging extension in the container (the Dockerfile already had a line to install LLDB itself), so in devcontainer.json
+&amp;quot;extensions&amp;quot;: [ ... &amp;quot;vadimcn.vscode-lldb&amp;quot;, ... ]  But, if you now spin up the container and try to start debugging, you&amp;rsquo;ll be greeted with a lovely error like:</description>
+    </item>
     
     <item>
       <title>Getting a skeleton up and running</title>

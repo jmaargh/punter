@@ -119,6 +119,38 @@
   
   <div class="post on-list">
     <h1 class="post-title">
+      <a href="https://jmaargh.github.io/punter/posts/aside-debugging/">Aside: Debugging</a></h1>
+    <div class="post-meta">
+      <span class="post-date">
+        2019-11-19
+      </span>
+      
+    </div>
+
+    
+
+    
+
+    <div class="post-content">
+      
+      
+      Just a quick note on getting the vscode interactive debugger playing nicely with the in-docker development.
+You can probably work out for yourself that you need to install the LLDB debugging extension in the container (the Dockerfile already had a line to install LLDB itself), so in devcontainer.json
+&quot;extensions&quot;: [ &hellip; &quot;vadimcn.vscode-lldb&quot;, &hellip; ]  But, if you now spin up the container and try to start debugging, you&rsquo;ll be greeted with a lovely error like:
+      
+      
+    </div>
+
+    
+    <div>
+      <a class="read-more button"
+        href="/punter/posts/aside-debugging/">Read more →</a>
+    </div>
+    
+  </div>
+  
+  <div class="post on-list">
+    <h1 class="post-title">
       <a href="https://jmaargh.github.io/punter/posts/getting-a-skeleton-up-and-running/">Getting a skeleton up and running</a></h1>
     <div class="post-meta">
       <span class="post-date">
