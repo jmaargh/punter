@@ -57,7 +57,7 @@ true
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
     PATH=/usr/local/cargo/bin:$PATH \
-    RUST_VERSION=1.39.0
+    RUST_VERSION=nightly-2019-11-17
 RUN set -eux; \
   apt-get install -y \
     coreutils \
@@ -73,6 +73,10 @@ RUN set -eux; \
   rm rustup-init; \
   chmod -R a+w $RUSTUP_HOME $CARGO_HOME; \
   rustup update; \
+true
+
+# Install rust extensions
+RUN set -eux; \
   rustup component add \
     rls \
     rust-analysis \
@@ -80,6 +84,7 @@ RUN set -eux; \
     rustfmt \
     clippy \
   ; \
+  cargo install cargo-expand; \
 true
 
 # Switch to non-root user and install Rust
