@@ -43,7 +43,7 @@ true
 
 # Install hugo
 RUN set -eux; \
-  git clone --branch v0.59.1 https://github.com/gohugoio/hugo.git; \
+  git clone --branch v0.60.1 https://github.com/gohugoio/hugo.git; \
   cd hugo; \
   go install; \
   go build; \
