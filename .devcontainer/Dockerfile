@@ -71,8 +71,8 @@ RUN set -eux; \
   chmod +x rustup-init; \
   ./rustup-init -y --no-modify-path --profile minimal --default-toolchain $RUST_VERSION; \
   rm rustup-init; \
-  chmod -R a+w $RUSTUP_HOME $CARGO_HOME; \
   rustup update; \
+  chmod -R a+w $RUSTUP_HOME $CARGO_HOME; \
 true
 
 # Install rust extensions
@@ -87,8 +87,11 @@ RUN set -eux; \
   cargo install cargo-expand; \
 true
 
-# Switch to non-root user and install Rust
+# Switch to non-root user
 USER $USERNAME
+
+# Allow the user to rust build
+RUN sudo chmod -R a+w $CARGO_HOME $RUSTUP_HOME
 
 # Custom bash prompt config
 COPY .git-prompt.sh /home/$USERNAME/.git-prompt.sh
